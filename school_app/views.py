@@ -38,7 +38,7 @@ def gallery(request):
     func=function.objects.all()
     pt=Pt.objects.all()
     context={'inaug':inaug,'assem':assem,'func':func,'pt':pt}
-    return render(request,('gallery.html'),context)
+    return render(request,('Gallery.html'),context)
 def admission(request):
     # todaydate=date.today()
    
