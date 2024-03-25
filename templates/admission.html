@@ -2,47 +2,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- {% block css %}static/admission.css{% endblock css %} -->
+    {% block css %}static/admission.css{% endblock css %}
     <title>{% block title %}| ADMISSION{% endblock title %}</title>
-    <style>
-      *{
-      padding: 0;
-      margin: 0;
-      }
-      .info{
-          margin: 3%;
-          background-color: white;
-      }
-      p{
-          padding: 5px;
-          padding-left: 20px
-      }
-      #head{
-          border: 2px solid black;
-      }
-      #last div ul li{
-          margin-left: 20px;
-      }
-      #l_span strong{
-          color: gray;
-      }
-      #l_span:hover{
-          font-size: 20px;
-          color: black;
-      }
-      #l_span strong:hover{
-          color: black;
-          
-      }
-  
-      @media only screen and (max-width: 600px) {
-          .info{
-              margin: 5px;
-          }
-      }
-    </style>
   </head>
-  
   {% block body %}
   <div class="container">
     <div class="header">

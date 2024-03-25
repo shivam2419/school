@@ -2,30 +2,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- {% block css %}static/about.css{% endblock css %} -->
+    {% block css %}static/about.css{% endblock css %}
     <title>{% block title %}| ABOUT{% endblock title %}</title>
-    <style>
-      .container{
-      margin: 3%;
-      }
-      .c1,.c2{
-          border: 1px solid gray;
-          padding: 20px;
-      }
-      .container h2{
-          border: 1px solid  black;
-          border-bottom: 0;
-          box-shadow: 1px 1px 8px 1px gray;
-          padding-left: 10px;
-          font-size: 18px;
-          background-color: white;
-      }
-      #ContentPanel{
-          background-color: white;
-      }
-    </style>
   </head>
-  
   {% block body %}
   <div class="container">
     <h2 style="background-color: rgb(11, 80, 145); color: white; border: none">
@@ -138,7 +117,7 @@
         <span style="font-size: 12px"
           ><img
             alt=""
-            src="/media/activity/images/president.jpeg"
+            src="{% static 'president.jpeg' %}"
             style="
               float: left;
               height: 230px;
@@ -191,7 +170,7 @@
         <span style="font-size: 12px"
           ><img
             alt=""
-            src="/media/activity/images/sir.jpg"
+            src="{% static 'sir.jpg' %}"
             style="
               float: left;
               height: 230px;
