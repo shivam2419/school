@@ -1,6 +1,7 @@
 # School Website
 
 # Image :
+Note : Because of using carousal in website images aren't clear but webpages are smooth and clear.
 ![School Website](School-Website-images/image1.png)
 
 **For more images, go on folder 'School_Website-images' in the repo...**
