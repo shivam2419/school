@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, HttpResponse
 from .models import home_form,event,activity,notice,registration,inaugration,assembly,function,Pt
 from .models import contact as Cont
+from django.shortcuts import get_object_or_404
 import datetime
+
 # Create your views here.
 current_time = datetime.datetime.now()
 today_date=datetime.date.today()
@@ -23,7 +25,7 @@ def index(request):
 
         submit=home_form(f_name=fname,l_name=lname,email=email,pnum=pnum)
         submit.save()
-    stud=event.objects.all()
+    stud =event.objects.order_by('created_at')
     acti=activity.objects.all()
     note=notice.objects.all()
     s={'stu':stud,'act':acti,'note':note}
@@ -79,3 +81,79 @@ def register(request):
         regis_submit.save()
     
     return render(request,('admission.html'))
+
+
+# Admin section
+def admin_dashboard(request):
+    data = registration.objects.all()
+    context = {
+        'items' : data
+    }
+    return render(request, 'admin/dashboard.html', context)
+
+def EnquiryInfo(request, pk):
+    try:
+        data = registration.objects.get(id=pk)
+    except registration.DoesNotExist:
+        # Handle the case where the registration with the given id doesn't exist
+        return render(request, 'admin/error.html', {'message': 'Registration does not exist'})
+
+    context = {'item': data}
+    if request.method == 'POST':
+        try:
+            Info = registration.objects.get(id=pk)
+            Info.delete()
+            print('done')
+            return redirect('Dashboard')
+        except registration.DoesNotExist:
+            # Handle the case where the registration with the given id doesn't exist
+            print('noe')
+            return render(request, 'admin/error.html', {'message': 'Registration does not exist'})
+
+    return render(request, 'admin/enquiry_info.html', context)
+
+def Activities_images(request):
+    if request.method == 'POST':
+        # Get the uploaded file from the request
+        files = request.FILES.getlist('file')
+        for file in files:
+            new_instance = activity(activity=file)
+            new_instance.save()
+    
+    top_obj = activity.objects.order_by('-id').first()
+    images = activity.objects.order_by('-created_at')
+    context = {
+        'images': images,
+        'top' : top_obj.activity.url
+    }
+    return render(request, 'admin/activities.html', context)
+
+def Events(request):
+    if request.method == 'POST':
+        name = request.POST.get('event_name')
+        desc = request.POST.get('event_desc')
+
+        date_string = request.POST.get('event_date')
+        date_obj = datetime.datetime.strptime(date_string, "%Y-%m-%d")
+        date = date_obj.day
+        months_dict = {
+            1: 'January',
+            2: 'February',
+            3: 'March',
+            4: 'April',
+            5: 'May',
+            6: 'June',
+            7: 'July',
+            8: 'August',
+            9: 'September',
+            10: 'October',
+            11: 'November',
+            12: 'December'
+        }
+        month = date_obj.month
+
+        img = request.POST.get('event_img')
+        
+        obj = event(event = name, event_desc = desc, event_img = img, date = date, month = months_dict[month])
+        obj.save()
+    return render(request, 'admin/eventsdata.html')

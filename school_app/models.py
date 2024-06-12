@@ -18,13 +18,18 @@ class contact(models.Model):
 
 class event(models.Model):
     event_id=models.AutoField
+
     date=models.IntegerField()
     month=models.CharField(max_length=20)
+
     event=models.CharField(max_length=20)
+    event_desc = models.CharField(max_length=2000, null=True)
     event_img=models.ImageField(upload_to='activity/images',default="")
+    created_at = models.DateTimeField(auto_now_add=True)
 
 class activity(models.Model):
     activity=models.ImageField(upload_to='activity/images',default="")
+    created_at = models.DateTimeField(auto_now_add=True)
 
 class notice(models.Model):
     date=models.CharField(max_length=100)
