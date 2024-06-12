@@ -131,7 +131,6 @@
             class="form-horizontal"
             enctype="multipart/form-data"
           >
-          {% csrf_token %}
             <div class="tab-content">
               <div class="tab-pane active" id="tab_0">
                 <div class="portlet box green">
@@ -140,6 +139,7 @@
                       <i class="fa fa-gift"></i>Details
                     </div>
 
+                    {% csrf_token %}
                     <div class="form-body">
                       <h3 class="form-section"></h3>
 
@@ -151,7 +151,7 @@
                             >
 
                             <div class="col-md-9">
-                              <input
+                              <input required
                                 type="text"
                                 class="form-control"
                                 name="txtFieldValue_0"
@@ -171,7 +171,7 @@
                             >
 
                             <div class="col-md-9">
-                              <input
+                              <input required
                                 type="text"
                                 class="form-control"
                                 name="txtFieldValue_1"
@@ -192,7 +192,7 @@
 
                             <div class="col-md-9">
 
-                              <input
+                              <input required
                                 type="text"
                                 class="form-control"
                                 name="txtFieldValue_2"
@@ -211,7 +211,7 @@
 
                             <div class="col-md-9">
 
-                                <input
+                                <input required
                                   type="date"
                                   name="txtFieldValue_3"
                                   id="txtFieldValue_3"
@@ -232,7 +232,7 @@
 
                             <div class="col-md-9">
 
-                              <input
+                              <input required
                                 type="number"
                                 class="form-control"
                                 name="txtFieldValue_4"
@@ -253,8 +253,8 @@
 
                             <div class="col-md-9">
 
-                              <input
-                                type="text"
+                              <input required
+                                type="Email"
                                 class="form-control"
                                 name="txtFieldValue_5"
                                 id="txtFieldValue_5"
@@ -342,7 +342,7 @@
 
                             <div class="col-md-9">
                       
-                              <input
+                              <input required
                                 type="text"
                                 class="form-control"
                                 name="txtFieldValue_8"
@@ -363,7 +363,7 @@
 
                             <div class="col-md-9">
 
-                              <input
+                              <input required
                                 type="text"
                                 class="form-control"
                                 name="txtFieldValue_9"
@@ -486,7 +486,7 @@
                         <div class="row">
                           <div class="col-md-6">
                             <div class="row">
-                              <input
+                              <input required
                                 type="hidden"
                                 name="totalrec"
                                 id="totalrec"

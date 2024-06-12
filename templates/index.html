@@ -100,12 +100,13 @@
     <div class="history" data-aos="fade-uo" data-aos-duration="1000">
       <h1>Upcoming Events</h1>
       <table>
+
         {% for st in stu %}
         <tr>
           <td>{{st.date}}<sup>th</sup></td>
           <td>{{st.month}}</td>
           <td><b>{{st.event}}</b></td>
-          <td><button>Visit</button></td>
+          <td><button><a href="">Visit</a></button></td>
         </tr>
 
         {% endfor %}
@@ -163,10 +164,7 @@
       <div class="left">
         <h1><img src="" alt="" />ARYABHATTA</h1>
         <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Laborum
-          distinctio ea quisquam in accusamus ratione a rerum perferendis minus,
-          quos dignissimos perspiciatis dolorem dolorum culpa aperiam quis.
-          Blanditiis, quod atque!
+          Join us on a journey of discovery, growth, and achievement at Aryabhatta Public School, where every child is valued and empowered to shine bright!
         </p>
       </div>
       <div class="right">
@@ -202,5 +200,6 @@
       },
     });
   </script>
+  
   {% endblock body %}
 </html>
