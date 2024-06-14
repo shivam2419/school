@@ -67,15 +67,11 @@
     <div class="container">
         <form action="" method="POST">
             {% csrf_token %}
-            <h1>Enter Event Details</h1>
+            <h1>Enter Notice Details</h1>
             <br>
-            <input type="text" placeholder="Enter event name*" name="event_name" required>
+            <input type="date" name="date" required>
             <br><br>
-            <input type="text" placeholder="Enter event description*" name="event_desc" required>
-            <br><br>
-            <input type="date" name="event_date" required>
-            <br><br>
-            <input type="file" name="event_img" required>
+            <input type="text" placeholder="Enter Notice* ( please write short and concise info)" name="notice" required>
             <br><br>
             <input type="submit" value="SUBMIT" id="btn">
         </form>
@@ -84,19 +80,15 @@
                 <table>
                     <tr>
                         <th>S.no</th>
-                        <th>Event name</th>
-                        <th>Description</th>
-                        <th>Event Image</th>
-                        <th>Event Date</th>
+                        <th>Date</th>
+                        <th>Topic</th>
                         <th>Delete</th>
                     </tr>
                     {% for items in data %}
                     <tr>
                         <td>1.</td>
-                        <td>{{items.event}}</td>
-                        <td>{{items.event_desc}}</td>
-                        <td>{{items.event_img}}</td>
-                        <td>{{items.date}} {{items.month}}</td>
+                        <td>{{items.date}}</td>
+                        <td>{{items.notice}}</td>
                         <td><button><a href="{% url 'deleteEvent' items.id %}">Delete</a></button></td>
                     </tr>
 

@@ -11,18 +11,10 @@
         #img {
             height: 10rem;
             width: 10rem;
-            border-radius : 50%;
+            border-radius: 50%;
         }
 
-        .responsive-img {
-            width: 30%;
-            height: 250px;
-            margin: 1%;
-            border: 2px solid black;
-            box-shadow: 2px 2px 5px 2px gray;
-        }
-
-        input {
+        #file{
             width: 150px;
         }
 
@@ -34,11 +26,32 @@
             width: 120px;
         }
 
+        .card{
+            width: 300px;
+            padding-bottom: 2%;
+            border: 1px solid gray;
+            box-shadow: 1px 2px 10px 2px gray;
+            margin: 1%;
+            float: left;
+        }
+        .card img{
+            width: 100%;
+            height: 250px;
+        }
+        .card .info a{
+            text-decoration: none;
+            background-color: red;
+            color: white;
+            padding: 8px;
+        }
+        .card .info a:hover{
+            opacity: 70%;
+        }
         @media screen and (max-width: 450px) {
-           #img{
-            height: 120px;
-            width: 120px;
-           }
+            #img {
+                height: 120px;
+                width: 120px;
+            }
         }
     </style>
 </head>
@@ -46,17 +59,24 @@
 <body>
     <form action="" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <img src="{{top}}"
-            alt="" id="img">
+        <img src="{{top}}" alt="" id="img">
         <br><br>
-        <input type="file" name="file" multiple required>
+        <input type="file" name="file" id="file" multiple required>
         <br><br>
         <input type="submit" value="SUBMIT" id="btn">
     </form>
     <br><br>
-    <h1 style="text-align: left; margin-left: 5%; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">All Images : </h1>
+    <h1
+        style="text-align: left; margin-left: 5%; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;">
+        All Images : </h1>
     {% for image in images %}
-    <img src="{{ image.activity.url }}" alt="{{ image.description }}" class="responsive-img" id="fetched_img">
+    <div class="card">
+        <img src="{{ image.activity.url }}" alt="{{ image.description }}" class="responsive-img" id="fetched_img">
+        <div class="info">
+            <p>Upload date : {{image.created_at|date:"Y-m-d"}}</p>
+            <a href="{% url 'deleteActivities' image.id %}">Delete</a>
+        </div>
+    </div>
     {% endfor %}
 </body>
 

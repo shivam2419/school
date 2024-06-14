@@ -58,9 +58,7 @@
       <div class="left">
         <h1>Why Aryabhatt School ?</h1>
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat, hic
-          eveniet. Asperiores, quasi iure a soluta iusto ad nulla quos in.
-          Praesentium veritatis sunt voluptatum dignissimos libero et incidunt
+          Aryabhatta School excels in academics and holistic development. With innovative teaching and dedicated faculty, we prioritize critical thinking and character building. Our state-of-the-art facilities and global perspective prepare students for success in a diverse world.
         </p>
         <button>Enroll</button>
       </div>
@@ -85,12 +83,11 @@
         <p data-aos="fade-right" data-aos-duration="1000">
           To lay the foundation of noble character of moral imtergity, brotherhood, patriotism and sacrifice in the young minds so that they grow straight and strong an ideal leaders who can shape destiny of the nation.
           <br /><br />
-          <a href="">Learn More</a>
         </p>
       </div>
       <div class="right">
         <img
-          src="{% static 'img8.jpg' %}"
+          src="https://cdni.iconscout.com/illustration/premium/thumb/mission-goals-4252954-3526675.png"
           alt=""
           data-aos="fade-right"
           data-aos-duration="1000"
@@ -106,7 +103,7 @@
           <td>{{st.date}}<sup>th</sup></td>
           <td>{{st.month}}</td>
           <td><b>{{st.event}}</b></td>
-          <td><button><a href="">Visit</a></button></td>
+          <td><button><a href="{% url 'EventInfo' %}">Visit</a></button></td>
         </tr>
 
         {% endfor %}
@@ -141,10 +138,10 @@
       </div>
       <div class="right">
         <img
-          src="{% static 'img7.jpg' %}"
+          src="{% static 'students.jpg' %}"
           alt=""
           height="300"
-          width="500"
+          width="400"
           style="border-radius: 10px"
         />
       </div>
