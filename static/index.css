@@ -106,7 +106,7 @@ body{
 }
 .about .left {
   width: 40%;
-  padding: 5%;
+  padding: 3%;
   text-align: left ;
 }
 .about .left h1 {
@@ -197,7 +197,7 @@ body{
 }
 .mission .right img{
   height: 350px;
-  border-radius: 10px;
+  border-radius: 50%px;
 }
 /* History content */
 .history {

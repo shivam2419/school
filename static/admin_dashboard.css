@@ -36,6 +36,17 @@
   margin-left: 50px;
 }
 
+.sidebar a{
+  font-family: Arial, Helvetica, sans-serif;
+}
+.sidebar a:last-child{
+  color: red;
+  font-size: 20px;
+  margin-top: 20%;
+}
+.sidebar a:last-child:hover{
+  color: white;
+}
 /* The button used to open the sidebar */
 .openbtn {
   font-size: 40px;
