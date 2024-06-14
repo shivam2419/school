@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponse
-from .models import home_form,event,activity,notice,registration,inaugration,assembly,function,Pt
+from .models import *
 from .models import contact as Cont
-from django.shortcuts import get_object_or_404
 import datetime
 
 # Create your views here.
@@ -25,15 +24,15 @@ def index(request):
 
         submit=home_form(f_name=fname,l_name=lname,email=email,pnum=pnum)
         submit.save()
-    stud =event.objects.order_by('created_at')
+    stud =event.objects.order_by('-created_at')
     acti=activity.objects.all()
-    note=notice.objects.all()
+    note=notice.objects.order_by('-created_at')
     s={'stu':stud,'act':acti,'note':note}
-    # s.update()
-    # a.update()
     return render(request,('index.html'),s)
+
 def about(request):
     return render(request,('about.html'))
+
 def gallery(request):
     inaug=inaugration.objects.all()
     assem=assembly.objects.all()
@@ -41,6 +40,7 @@ def gallery(request):
     pt=Pt.objects.all()
     context={'inaug':inaug,'assem':assem,'func':func,'pt':pt}
     return render(request,('Gallery.html'),context)
+
 def admission(request):
     # todaydate=date.today()
    
@@ -82,6 +82,12 @@ def register(request):
     
     return render(request,('admission.html'))
 
+def EventInfo(request):
+    data = event.objects.all()
+    context = {
+        'data' : data
+    }
+    return render(request, 'eventinfo.html', context)
 
 # Admin section
 def admin_dashboard(request):
@@ -122,9 +128,10 @@ def Activities_images(request):
     
     top_obj = activity.objects.order_by('-id').first()
     images = activity.objects.order_by('-created_at')
+
     context = {
         'images': images,
-        'top' : top_obj.activity.url
+        'top' : top_obj.activity.url,
     }
     return render(request, 'admin/activities.html', context)
 
@@ -153,7 +160,40 @@ def Events(request):
         month = date_obj.month
 
         img = request.POST.get('event_img')
-        
         obj = event(event = name, event_desc = desc, event_img = img, date = date, month = months_dict[month])
         obj.save()
-    return render(request, 'admin/eventsdata.html')
+
+    data = event.objects.order_by('-created_at')
+    context = {
+        'data' : data
+    }
+    return render(request, 'admin/eventsdata.html', context)
+
+def deleteEvent(request, pk):
+    if request.method == 'POST':
+        data = event.objects.get(id=pk)
+        data.delete()
+        return redirect('Events')
+    data = event.objects.get(id=pk)
+    return render(request, 'admin/eventdelete.html', {'data' : data})
+
+def Notices(request):
+    if request.method == 'POST':
+        date = request.POST.get('date')
+        notices = request.POST.get('notice')
+        
+        obj = notice(date = date, notice = notices)
+        obj.save()
+    data = notice.objects.order_by('-created_at')
+    context = {
+        'data' : data
+    }
+    return render(request, 'admin/noticedata.html', context)
+
+def deleteActivity(request, pk):
+    if request.method == 'POST':
+        data = activity.objects.get(id=pk)
+        data.delete()
+        return redirect('Activities')
+    data = activity.objects.get(id=pk)
+    return render(request, 'admin/delete_activities.html', {'data' : data})

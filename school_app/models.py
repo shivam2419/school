@@ -24,7 +24,7 @@ class event(models.Model):
 
     event=models.CharField(max_length=20)
     event_desc = models.CharField(max_length=2000, null=True)
-    event_img=models.ImageField(upload_to='activity/images',default="")
+    event_img=models.ImageField(upload_to='activity/images',default="events/images")
     created_at = models.DateTimeField(auto_now_add=True)
 
 class activity(models.Model):
@@ -34,6 +34,7 @@ class activity(models.Model):
 class notice(models.Model):
     date=models.CharField(max_length=100)
     notice=models.CharField(max_length=200)
+    created_at = models.DateTimeField(auto_now_add=True)
 
 #Registration data model
 class registration(models.Model):
