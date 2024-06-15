@@ -197,7 +197,7 @@ def deleteNotice(request, pk):
         data.delete()
         return redirect('Notice')
     data = notice.objects.get(id=pk)
-    return render(request, 'admin/deleteNotice.html', {'data':data})
+    return render(request, 'admin/deletenotice.html', {'data':data})
 
 def deleteActivity(request, pk):
     if request.method == 'POST':
