@@ -159,7 +159,8 @@ def Events(request):
         }
         month = date_obj.month
 
-        img = request.POST.get('event_img')
+        img = request.FILES['event_img']
+        print(img)
         obj = event(event = name, event_desc = desc, event_img = img, date = date, month = months_dict[month])
         obj.save()
 
@@ -190,6 +191,14 @@ def Notices(request):
     }
     return render(request, 'admin/noticedata.html', context)
 
+def deleteNotice(request, pk):
+    if request.method == 'POST':
+        data = notice.objects.get(id=pk)
+        data.delete()
+        return redirect('Notice')
+    data = notice.objects.get(id=pk)
+    return render(request, 'admin/deleteNotice.html', {'data':data})
+
 def deleteActivity(request, pk):
     if request.method == 'POST':
         data = activity.objects.get(id=pk)
@@ -197,3 +206,7 @@ def deleteActivity(request, pk):
         return redirect('Activities')
     data = activity.objects.get(id=pk)
     return render(request, 'admin/delete_activities.html', {'data' : data})
+
+
+def School_gallery(request):
+    return render(request, 'admin/School_gallery.html')

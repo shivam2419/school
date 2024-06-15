@@ -24,7 +24,7 @@ class event(models.Model):
 
     event=models.CharField(max_length=20)
     event_desc = models.CharField(max_length=2000, null=True)
-    event_img=models.ImageField(upload_to='activity/images',default="events/images")
+    event_img=models.ImageField(upload_to='events/images',default="")
     created_at = models.DateTimeField(auto_now_add=True)
 
 class activity(models.Model):

@@ -13,11 +13,15 @@ urlpatterns = [
     path("events",views.EventInfo, name='EventInfo'),
     path("service",views.service, name='service'),
     path("Gallery",views.gallery),
+    # admin section
     path("Dashboard",views.admin_dashboard, name='Dashboard'),
     path("enquiry_info/<str:pk>",views.EnquiryInfo, name='Enquiry'),
     path("activities",views.Activities_images, name='Activities'),
-    path("Delete-Activities/<str:pk>",views.deleteActivity, name='deleteActivities'),
     path("events_data",views.Events, name='Events'),
-    path("deleteevent/<str:pk>",views.deleteEvent, name='deleteEvent'),
     path("notices",views.Notices, name='Notice'),
+    path("schoolgallery",views.deleteNotice, name='School_gallery'),
+    # delete section
+    path("Delete-Activities/<str:pk>",views.deleteActivity, name='deleteActivities'),
+    path("deleteevent/<str:pk>",views.deleteEvent, name='deleteEvent'),
+    path("deletenotice/<str:pk>",views.deleteNotice, name='deleteNotice'),
 ]
