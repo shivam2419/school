@@ -10,28 +10,33 @@
 }
 .middle .left h2{
     font-size: 40px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Lato", sans-serif;
     font-weight: bold;
     color: black;
 }
 .middle .left p{
     font-size: 18px;
-    font-weight: lighter;
+    font-family: "Roboto", sans-serif;
     margin: 2%;
     margin-left: 3%;
     width: 500px;
     color: black;
 }
+/* Form section */
 form{
     background-color: white;
     border-radius: 20px;
     text-align: center;
     padding: 20px;
-    width: 400px;
+    padding-right: 40px;
+    width: fit-content;
+}
+form p{
+    font-family: "Roboto", sans-serif;
 }
 form h3{
     font-size: 25px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Lato", sans-serif;
     font-weight: bold;
     color: rgb(5, 38, 137);
     padding-bottom: 30px;
@@ -39,20 +44,14 @@ form h3{
 form input{
     border: none;
     padding: 5px;
-    margin-right: 5px;
-    border-bottom: 3px solid black;
-}
-#mail{
-    width: 350px;
-}
-textarea{
-    border: none;
+    margin: 10px;
+    width: 100%;
     border-bottom: 3px solid black;
 }
 input:last-child{
     background-color: rgb(58, 40, 220);
     padding: 5px;
-    width: 370px;
+    width: 90%;
     color: white;
     font-size: 20px;
     margin-top: 20px;
@@ -90,9 +89,6 @@ input:last-child{
     width: 260px;
     margin-top: 10px;
    }
-   #mail,input:last-child,textarea{
-    width: 280px;
-   }
     
 }
 @media only screen and (max-width: 385px) {
@@ -105,7 +101,4 @@ input:last-child{
     form input{
         width: 200px;
     }
-    #mail,input:last-child,textarea{
-        width: 200px;
-       }
 }
