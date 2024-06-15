@@ -4,10 +4,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% block css %}{% endblock css %}" />
+    <link rel="stylesheet" href="{% block css %}{% endblock css %}"/>
     <link rel="stylesheet" href="static/base.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -33,7 +32,9 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,400;1,500&display=swap"
       rel="stylesheet"
     />
-
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v6.3.0/css/all.css"
@@ -42,7 +43,7 @@
   <body>
     <nav id="nav">
       <div id="bar">
-        <i Style="font-size:24px;" class="fa fa-bars"></i>
+        <i Style="font-size:24px;" class="fa fa-bars" onclick="openNav()"></i>
       </div>
       <a href="index"><img src={% static 'logo.jpg' %} alt=".." /></a>
       <h2>ARYABHATTA</h2>
@@ -80,60 +81,16 @@
       <button id="navbutton"><a href="admission">Enroll</a></button>
     </nav>
     <!--aside bar-->
-    <nav class="navbar" id="navbar">
-      <div class="navbar-container">
-        <!--logo div-->
-        <div class="navbar-logo-div">
-          <a class="navbar-logo-link" href="#">
-            <i class="close">X</i>
-          </a>
-          <button class="navbar-toggler">
-            <i class="fas fa-solid fa-bars"></i>
-          </button>
-        </div>
+    <div id="mySidebar" class="sidebar">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="{% url 'index' %}">Home</a>
+      <a href="{% url 'about' %}">About Us</a>
+      <a href="{% url 'admission' %}">Admissions</a>
+      <a href="{% url 'contact' %}">Contact</a>
+      <a href="{% url 'service' %}">Services</a>
+      <a href="{% url 'enquire' %}">Enroll</a>
+  </div>
 
-        <!--search input-->
-
-        <!--item list-->
-        <ul class="menu-list">
-          <li class="menu-item">
-            <a class="menu-link" href="index">
-              <i class="fas fa-solid fa-table"></i>
-              <span class="menu-link-text">Home</span>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a class="menu-link" href="admission">
-              <i class="fas fa-solid fa-paw"></i>
-              <span class="menu-link-text">Admission</span>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a class="menu-link" class="menu-link" href="about">
-              <i class="fas fa-solid fa-user"></i>
-              <span class="menu-link-text">About Us</span>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a class="menu-link" href="contact">
-              <i class="fas fa-regular fa-stethoscope"></i>
-              <span class="menu-link-text">Contact</span>
-            </a>
-          </li>
-          <li class="menu-item">
-            <a class="menu-link" href="service">
-              <i class="fas fa-duotone fa-gear"></i>
-              <span class="menu-link-text">Service <i class="fa fa-angle-down"></i> </span>
-              <ul>
-              <li><a href="">Home</a></li>
-              <li><a href="">Home</a></li>
-              <li><a href="">Home</a></li>
-              </ul>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
     {% block body %}
     
     {% endblock body %}
@@ -359,28 +316,20 @@
       AOS.init();
     </script>
     <script>
-      //elements
-      const btnToggler = window.document.querySelector(".navbar-toggler");
-      const inputSearch = window.document.querySelector(".navbar-search");
-      const iconSearch = window.document.querySelector("#icon-search");
-      const navbar = window.document.querySelector(".navbar");
+      /* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
+      function openNav() {
+        document.getElementById("mySidebar").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+        document.getElementById("nav").style.display = "none";
 
-      //events
-      btnToggler.addEventListener("click", () => {
-        navbar.classList.toggle("active");
-      });
+    }
 
-      inputSearch.addEventListener("click", () => {
-        if (!navbar.classList.contains("active")) {
-          navbar.classList.add("active");
-        }
-      });
-
-      iconSearch.addEventListener("click", () => {
-        if (!navbar.classList.contains("active")) {
-          navbar.classList.add("active");
-        }
-      });
+      /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+      function closeNav() {
+        document.getElementById("nav").style.display = "flex";
+          document.getElementById("mySidebar").style.width = "0";
+          document.getElementById("main").style.marginLeft = "0";
+      }
     </script>
     <script>
       $(".owl-carousel").owlCarousel({

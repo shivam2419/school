@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    {% block css %}static/index.css{% endblock css %}
+    {% block css %}{% static "index.css" %}{% endblock css %}
     <title>{% block title %}Home{% endblock title %}</title>
   </head>
   {% block body %}
@@ -129,7 +129,7 @@
       <div class="left">
         <h1>Notice</h1>
         <marquee behavior="" direction="up" id="mark">
-          {% for note in note %}
+          {% for note in note|slice:":3" %}
           <img src="{% static 'new.png' %}" alt="" height="30" width="30" />
           <b>{{note.date}}</b>
           <p>{{note.notice}}</p>
@@ -140,9 +140,6 @@
         <img
           src="{% static 'students.jpg' %}"
           alt=""
-          height="300"
-          width="400"
-          style="border-radius: 10px"
         />
       </div>
     </div>
