@@ -53,13 +53,17 @@ class registration(models.Model):
 
 # School Gallery
 class inaugration(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
     inaugration=models.ImageField(upload_to='activity/images',default="")
 
 class assembly(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
     assembly=models.ImageField(upload_to='activity/images',default="")
 
 class function(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
     function=models.ImageField(upload_to='activity/images',default="")
 
 class Pt(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
     Pt=models.ImageField(upload_to='activity/images',default="")

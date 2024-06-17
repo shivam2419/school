@@ -12,16 +12,23 @@ urlpatterns = [
     path("reg_submit",views.register),
     path("events",views.EventInfo, name='EventInfo'),
     path("service",views.service, name='service'),
-    path("Gallery",views.gallery),
+    path("Gallery",views.gallery, name="Gallery"),
     # admin section
-    path("Dashboard",views.admin_dashboard, name='Dashboard'),
+    path("enquiry",views.enquiry_dashboard, name='enquiry'),
+    path("adminDashboard",views.admin, name='adminDashboard'),
     path("enquiry_info/<str:pk>",views.EnquiryInfo, name='Enquiry'),
     path("activities",views.Activities_images, name='Activities'),
     path("events_data",views.Events, name='Events'),
     path("notices",views.Notices, name='Notice'),
-    path("schoolgallery",views.deleteNotice, name='School_gallery'),
+    # School gallery
+    path("schoolgallery",views.School_gallery, name='School_gallery'),
+    path("addInaugration",views.addInaugration, name='addInaugration'),
+    path("addAssembly",views.addAssembly, name='addAssembly'),
+    path("addFunction",views.addFunction, name='addFunction'),
+    path("addPt",views.addPt, name='addPt'),
     # delete section
     path("Delete-Activities/<str:pk>",views.deleteActivity, name='deleteActivities'),
     path("deleteevent/<str:pk>",views.deleteEvent, name='deleteEvent'),
     path("deletenotice/<str:pk>",views.deleteNotice, name='deleteNotice'),
+    path("deleteGallery/<str:pk>/<str:pk1>",views.deleteGallery, name='deleteGallery'),
 ]
