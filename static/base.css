@@ -16,7 +16,7 @@
 
 nav {
   display: flex;
-  padding-top: 20px;
+  padding-top: 15px;
   background-color: white;
   width: 100%;
 }
@@ -96,6 +96,7 @@ nav ul li ul li:hover{
   font-family: sans-serif;
   margin-right: 3%;
   letter-spacing: 0.1rem;
+  margin-top: -5px;
 }
 #navbutton:hover{
   scale: 1.1;
