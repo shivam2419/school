@@ -130,10 +130,12 @@ def Activities_images(request):
     
     top_obj = activity.objects.order_by('-id').first()
     images = activity.objects.order_by('-created_at')
-
+    if(top_obj):
+        top_obj = top_obj.activity.url
+        
     context = {
         'images': images,
-        'top' : top_obj.activity.url,
+        'top' : top_obj,
     }
     return render(request, 'admin/activities.html', context)
 def deleteActivity(request, pk):
@@ -225,9 +227,10 @@ def addInaugration(request):
             new_instance = inaugration(inaugration=file)
             new_instance.save()
     
-    top_obj = inaugration.objects.order_by('-id').first().inaugration.url
+    top_obj = inaugration.objects.order_by('-id').first()
     images = inaugration.objects.order_by('-created_at')
-
+    if(top_obj):
+        top_obj = top_obj.inaugration.url
     own_id = 1
     context = {'top' : top_obj,
                'images' : images,
