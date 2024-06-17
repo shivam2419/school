@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'admission2.css' %}">
     <title>ARYABHATT EDU | ADMISSION-FORM</title>
   </head>
@@ -64,23 +65,10 @@
               guarantee admission to School.</b
             >
           </li>
-
-          <li>
-            <b
-              >This form is non-transferable. Registration Fee is INR 150/- for
-              Classes Balvatika(Foundational Stage) to IX, INR
-              1000/- for Stages IX to XII . The registration fee is non refundable .</b
-            >
-          </li>
-
-          <!-- <li><b><a>Kindly view the school fee structure by clicking on the link</a> or visiting the 
-
-					school website before submitting the application</b></li>
- -->
           <li>
             <b
               >Kindly view the school fee structure by clicking on the link (<a
-                href="pdf/FEE STRUCTURE CBSE 2024-25.pdf"
+                href="{% url 'service' %}"
                 target="_blank"
                 style="color: blue; text-decoration: underline"
                 >Fee Structure for the session 2024-25</a
@@ -144,7 +132,7 @@
                       <h3 class="form-section"></h3>
 
                       <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                           <div class="form-group">
                             <label class="control-label col-md-3">
                               Student Name*</label
@@ -258,11 +246,7 @@
                                 class="form-control"
                                 name="txtFieldValue_5"
                                 id="txtFieldValue_5"
-                                onchange="ValidateSingleInput(this);"
                                 placeholder="Email Id*"
-                                onclick="javascript:CalculateAgeInQC();"
-                                onkeyup="upperCaseF(this)"
-                                readonly="true"
                               />
                             </div>
                           </div>
@@ -404,10 +388,10 @@
                               residence is within 0.5 km radius of the school)</p>
                               <br><br>
                             </div>
-                            </div>
                           </div>
                         </div>
-        
+                        </div>
+                        
                       </div>
                     </div>
 
@@ -529,6 +513,12 @@
 
     <!-- END PAGE CONTENT-->
   </div>
-  
+  <script>
+    function scrollToSection(id) {
+        var element = document.getElementById(id);
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+</script>
+
   </body>
 </html>
