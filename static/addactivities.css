@@ -55,7 +55,9 @@ form{
 
  @media screen and (max-width: 450px) {
     
-
+    .card{
+        padding-bottom: 4%;
+    }
      #img {
          height: 120px;
          width: 120px;
