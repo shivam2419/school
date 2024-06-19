@@ -31,9 +31,9 @@
                     </tr>
                     {% for items in data %}
                     <tr>
-                        <td>1.</td>
+                        <td>{{ forloop.counter }}.</td>
                         <td>{{items.event}}</td>
-                        <td>{{items.event_desc}}</td>
+                        <td>{{items.event_desc|slice:":10"}}..</td>
                         <td>{{items.date}} {{items.month}}</td>
                         <td><button><a href="{% url 'deleteEvent' items.id %}">Delete</a></button></td>
                     </tr>

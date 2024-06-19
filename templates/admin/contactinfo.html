@@ -5,30 +5,30 @@
 
 {% block body %}
     <div class="admin-container">
+        <form action="" method="POST">
+        {% csrf_token %}
         <h1>ENQUIRIES : </h1>
         <table>
             <tr>
                 <th>S.No</th>
                 <th>Name</th>
-                <th>Phone number</th>
                 <th>Email id</th>
-                <th>Std.</th>
+                <th>Phone number</th>
                 <th>Status</th>
             </tr>
-            {% for item in items %}
+            {% for item in contact %}
                 <tr>
                     <td>{{ forloop.counter }}.</td>
-                    <td>{{item.student_name}}</td>
-                    <td>{{item.phone_number}}</td>
-                    <td>{{item.email_id}}</td>
-                    <td>{{item.class_for}}</td>
+                    <td>{{item.f_name}}{{item.l_name}}</td>
+                    <td>{{item.email}}</td>
+                    
+                    <td>{{item.pnum}}</td>
                     <td>
-                        <button>
-                            <a href="enquiry_info/{{item.id}}">Check</a></button>
-                            <button type="submit"><a href="{% url 'Enquiry' item.id %}">Delete</a></button>
+                        <button type="submit"><a href="{% url 'deleteContact' item.id %}">Delete</a></button>
                     </td>
                 </tr>
             {% endfor %}
         </table>
+    </form>
     </div>
     {% endblock body %}
