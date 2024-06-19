@@ -1,20 +1,13 @@
 from django.db import models
 
 # Create your models here.
-class home_form(models.Model):
-    user_id=models.AutoField
-    f_name=models.CharField(max_length=200)
-    l_name=models.CharField(max_length=200) 
-    email=models.EmailField()
-    pnum=models.IntegerField()
-
 # Contact page form
 class contact(models.Model):
     user_id=models.AutoField
     f_name=models.CharField(max_length=200)
     l_name=models.CharField(max_length=200) 
     email=models.EmailField()
-    desc=models.CharField(max_length=400)
+    pnum =models.CharField(max_length=400)
 
 class event(models.Model):
     event_id=models.AutoField

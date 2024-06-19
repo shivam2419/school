@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect, HttpResponse
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from .models import *
 from .models import contact as Cont
 import datetime
@@ -14,7 +16,7 @@ session_context={
     "over_year":current_year+2,
     "date":today_date
 }
-
+# Users section
 def index(request):
     if request.method=="POST":
         fname=request.POST.get('f_name')
@@ -22,7 +24,7 @@ def index(request):
         email=request.POST.get('email')
         pnum=request.POST.get('pnum')
 
-        submit=home_form(f_name=fname,l_name=lname,email=email,pnum=pnum)
+        submit=Cont(f_name=fname,l_name=lname,email=email,pnum=pnum)
         submit.save()
     stud =event.objects.order_by('-created_at')
     acti=activity.objects.all()
@@ -53,9 +55,9 @@ def contact(request):
         fname=request.POST.get('fname')
         lname=request.POST.get('lname')
         email=request.POST.get('email')
-        text=request.POST.get('txt')
+        pnum=request.POST.get('txt')
 
-        contact_submit=Cont(f_name=fname,l_name=lname,email=email,desc=text)
+        contact_submit=Cont(f_name=fname,l_name=lname,email=email,pnum=pnum)
         contact_submit.save()
     return render(request,('contact.html'))
 
@@ -89,9 +91,34 @@ def EventInfo(request):
     }
     return render(request, 'eventinfo.html', context)
 
+
+# Login/Logout system
+def Login(request):
+    if request.method == "POST":
+        name = request.POST.get("name")
+        pswrd = request.POST.get("password")
+        print(name)
+        user = authenticate(request, username=name, password=pswrd)
+        if user is not None:
+            login(request, user)
+            return redirect('adminDashboard')  # Redirect to a success page
+        else:
+            # Return an 'invalid login' error message
+            return render(request, 'admin/login.html')
+
+    return render(request, 'admin/login.html')
+
+def Logout(request):
+    logout(request)
+    return redirect('login')
+
+
 # Admin section
+@login_required(login_url='login')
 def admin(request):
     return render(request, 'admin/index.html')
+
+@login_required(login_url='login')
 def enquiry_dashboard(request):
     data = registration.objects.all()
     context = {
@@ -99,12 +126,13 @@ def enquiry_dashboard(request):
     }
     return render(request, 'admin/dashboard.html', context)
 
+@login_required(login_url='login')
 def EnquiryInfo(request, pk):
     try:
         data = registration.objects.get(id=pk)
     except registration.DoesNotExist:
         # Handle the case where the registration with the given id doesn't exist
-        return render(request, 'admin/error.html', {'message': 'Registration does not exist'})
+        return HttpResponse("Data doesn't exists")
 
     context = {'item': data}
     if request.method == 'POST':
@@ -112,14 +140,14 @@ def EnquiryInfo(request, pk):
             Info = registration.objects.get(id=pk)
             Info.delete()
             print('done')
-            return redirect('Dashboard')
+            return redirect('adminDashboard')
         except registration.DoesNotExist:
             # Handle the case where the registration with the given id doesn't exist
-            print('noe')
-            return render(request, 'admin/error.html', {'message': 'Registration does not exist'})
+            return HttpResponse("Data doesn't exists")
 
     return render(request, 'admin/enquiry_info.html', context)
 
+@login_required(login_url='login')
 def Activities_images(request):
     if request.method == 'POST':
         # Get the uploaded file from the request
@@ -138,6 +166,8 @@ def Activities_images(request):
         'top' : top_obj,
     }
     return render(request, 'admin/activities.html', context)
+
+@login_required(login_url='login')
 def deleteActivity(request, pk):
     if request.method == 'POST':
         data = activity.objects.get(id=pk)
@@ -146,8 +176,30 @@ def deleteActivity(request, pk):
     data = activity.objects.get(id=pk)
     return render(request, 'admin/delete_activities.html', {'data' : data})
 
+# Contact section 
+
+@login_required(login_url='login')
+def Contact_Info(request):
+    contact_info = Cont.objects.all()
+    context = {
+        'contact' : contact_info
+    }
+    return render(request, 'admin/contactinfo.html', context)
+
+@login_required(login_url='login')
+def deleteContact(request, pk):
+    data = Cont.objects.get(id = pk)
+    if request.method == 'POST':
+        data.delete()
+        return redirect('ContactInfo')
+    context = {
+        'data' : data
+    }
+    return render(request, 'admin/deletecontact.html', context)
+
 # Event section
 
+@login_required(login_url='login')
 def Events(request):
     if request.method == 'POST':
         name = request.POST.get('event_name')
@@ -183,6 +235,7 @@ def Events(request):
     }
     return render(request, 'admin/eventsdata.html', context)
 
+@login_required(login_url='login')
 def deleteEvent(request, pk):
     if request.method == 'POST':
         data = event.objects.get(id=pk)
@@ -194,6 +247,7 @@ def deleteEvent(request, pk):
 
 # Notice section
 
+@login_required(login_url='login')
 def Notices(request):
     if request.method == 'POST':
         date = request.POST.get('date')
@@ -207,6 +261,7 @@ def Notices(request):
     }
     return render(request, 'admin/noticedata.html', context)
 
+@login_required(login_url='login')
 def deleteNotice(request, pk):
     if request.method == 'POST':
         data = notice.objects.get(id=pk)
@@ -216,9 +271,13 @@ def deleteNotice(request, pk):
     return render(request, 'admin/deletenotice.html', {'data':data})
 
 # School gallery section
+
+@login_required(login_url='login')
 def School_gallery(request):
     return render(request, 'admin/school_gallery.html')
 
+
+@login_required(login_url='login')
 def addInaugration(request):
     if request.method == 'POST':
         # Get the uploaded file from the request
@@ -238,6 +297,7 @@ def addInaugration(request):
                }
     return render(request, 'admin/addinaugration.html',context)
 
+@login_required(login_url='login')
 def addAssembly(request):
     if request.method == 'POST':
         # Get the uploaded file from the request
@@ -258,6 +318,7 @@ def addAssembly(request):
                }
     return render(request, 'admin/addassembly.html', context)
 
+@login_required(login_url='login')
 def addFunction(request):
     if request.method == 'POST':
         # Get the uploaded file from the request
@@ -278,6 +339,7 @@ def addFunction(request):
                }
     return render(request, 'admin/addfunction.html', context)
 
+@login_required(login_url='login')
 def addPt(request):
     if request.method == 'POST':
         # Get the uploaded file from the request
@@ -299,6 +361,7 @@ def addPt(request):
     return render(request, 'admin/addpt.html', context)
 
 # Delete from gallery
+@login_required(login_url='login')
 def deleteGallery(request, pk, pk1):
     if pk == '1':
         obj = inaugration.objects.get(id = pk1)

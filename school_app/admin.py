@@ -1,8 +1,7 @@
 from django.contrib import admin
-from .models import home_form,contact,event,activity,notice,registration,inaugration,assembly,function,Pt
+from .models import contact,event,activity,notice,registration,inaugration,assembly,function,Pt
 
 # Register your models here.
-admin.site.register(home_form)
 admin.site.register(contact)
 admin.site.register(event)
 admin.site.register(activity)
