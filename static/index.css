@@ -592,10 +592,26 @@ body{
     text-align: center;
     padding-left: 30px;
   }
+  .form .left h1{
+    font-size: 32px;
+  }
+}
+@media only screen and (max-width: 380px) {
+  .new marquee p a{
+    font-size: 14px;
+  }
+  .new marquee img{
+    height: 20px;
+  }
 }
 
-
 @media only screen and (max-width: 300px) {
+  .new marquee p a{
+    font-size: 12px
+  }
+  .new marquee img{
+    height: 20px;
+  }
   .history{
     padding: 0; 
   }
@@ -618,5 +634,8 @@ body{
     width: 60px;
     font-size: 8px;
 
+  }
+  .form .left h1{
+    font-size: 24px;
   }
 }

@@ -143,27 +143,40 @@ body {
   z-index: 1; /* Stay on top */
   top: 0;
   left: 0;
-  background-color: #111; /* Black*/
+  background-color: rgb(27, 0, 100); /* Black*/
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidebar */
 }
-
+.sidebar h3{
+  padding: 10px;
+  background-color: white;
+  width: inherit;
+  font: 22px bold;
+  font-family: 'Roboto', sans-serif;
+  color: rgb(27, 0, 100);
+}
 /* The sidebar links */
 .sidebar a {
-  padding: 8px 8px 8px 32px;
+  padding: 8px 8px 8px 20px;
   text-decoration: none;
   font-size: 25px;
-  color: #818181;
+  color: white;
   display: block;
   transition: 0.3s;
+  font-family: 'Roboto', sans-serif;
+  margin: 10px;
+  border-radius: 5px;
+  transition: 0.2s ease-out;
 }
 
 /* When you mouse over the navigation links, change their color */
 .sidebar a:hover {
-  color: #f1f1f1;
+  background-color: rgb(156, 102, 0);
 }
-
+.sidebar a i{
+  font-size: 20px;
+}
 /* Position and style the close button (top right corner) */
 .sidebar .closebtn {
   position: absolute;
@@ -176,14 +189,7 @@ body {
 .sidebar a{
   font-family: Arial, Helvetica, sans-serif;
 }
-.sidebar a:last-child{
-  color: red;
-  font-size: 20px;
-  margin-top: 20%;
-}
-.sidebar a:last-child:hover{
-  color: white;
-}
+
 /* The button used to open the sidebar */
 .openbtn {
   font-size: 40px;
